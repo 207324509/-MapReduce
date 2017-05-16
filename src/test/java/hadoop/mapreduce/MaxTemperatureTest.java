@@ -67,9 +67,12 @@ public class MaxTemperatureTest {
 		MaxTemperatureDriver driver = new MaxTemperatureDriver();
 		Path input = new Path("hdfs://localhost:9000/user/hefa/input/sample.txt");
 		Path output = new Path("hdfs://localhost:9000/user/hefa/output");
+		
 		FileSystem fs = FileSystem.get(conf);
-	    fs.delete(output, true); // delete old output
-	    driver.setConf(conf);
+		fs.delete(output, true); // delete old output
+	    
+		driver.setConf(conf);
+	    
 		int exitCode = driver.run(new String[] { input.toString(), output.toString() });
 		assertThat(exitCode, is(0));
 		checkOutput(conf, output);
@@ -89,8 +92,9 @@ public class MaxTemperatureTest {
 	    assertThat(actual.readLine(), nullValue());
 	    actual.close();
 	    expected.close();
-	  }
+	}
+	
 	private BufferedReader asBufferedReader(InputStream in) throws IOException {
 	    return new BufferedReader(new InputStreamReader(in));
-	  }
+	}
 }
