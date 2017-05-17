@@ -36,12 +36,11 @@ public class MaxTemperature {
 			parser.parse(value);
 			if (parser.isValidTemperature()) {
 				int airTemperature = parser.getAirTemperature();
-				if (airTemperature > 250) {
-					System.err.println("Temperature over 100 edgrees for input:" + value);
-					ct = context.getCounter("ErrorCounter", "OVER_250");
-					ct.increment(1);
-				}
 				context.write(new Text(parser.getYear()), new IntWritable(airTemperature));
+			}else if(parser.isMalformedTemperature()){
+				System.err.println("Temperature over 100 edgrees for input:" + value);
+				ct = context.getCounter("ErrorCounter", "OVER_250");
+				ct.increment(1);
 			}
 		}
 	}

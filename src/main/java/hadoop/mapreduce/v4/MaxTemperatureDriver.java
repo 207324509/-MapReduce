@@ -14,6 +14,11 @@ import org.apache.hadoop.util.ToolRunner;
 import hadoop.mapreduce.v2.MaxTemperature.MaxTemperatureMapper;
 import hadoop.mapreduce.v2.MaxTemperature.MaxTemperatureReducer;
 
+/**
+ * MaxTemperatureDriver
+ * @author hefa
+ *
+ */
 public class MaxTemperatureDriver extends Configured implements Tool {
 
 	public int run(String[] args) throws Exception {
